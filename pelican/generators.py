@@ -174,7 +174,8 @@ class ArticlesGenerator(Generator):
         for article in chain(self.translations, self.articles):
             write(article.save_as,
                           article_template, self.context, article=article,
-                          category=article.category)
+                          category=article.category,
+                          paginated = {'articles': self.articles, 'dates': self.dates})
 
         PAGINATED_TEMPLATES = self.settings.get('PAGINATED_DIRECT_TEMPLATES')
         for template in self.settings.get('DIRECT_TEMPLATES'):
